@@ -27,6 +27,17 @@ class UserListTest {
     }
 
     @Test
+    @DisplayName("add a new user")
+    public void testAddNewUser() {
+        UserList userList = new UserList();
+
+        userList.addUser("Anonymous", "123456");
+
+        User user = userList.findUserByUsername("Anonymous");
+        assertEquals("Anonymous", user.getUsername());
+    }
+
+    @Test
     @DisplayName("User can change password")
     public void testUserCanChangePassword() {
         // TODO: add 3 users to UserList
@@ -53,10 +64,10 @@ class UserListTest {
         userList.addUser("Three", "123456");
 
         // TODO: call login() with correct username and password
-        User actual = userList.login("One", "123456");
+        User actual = userList.login("Three", "123456");
 
         // TODO: assert that User object is found
-        // assertEquals(expected, actual);
+        assertNotNull(actual);
     }
 
     @Test
@@ -70,7 +81,7 @@ class UserListTest {
         userList.addUser("Three", "123456");
 
         // TODO: call login() with incorrect username or incorrect password
-        User actual = userList.login("Four", "789789");
+        User actual = userList.login("One", "789789");
 
         // TODO: assert that the method return null
          assertNull(actual);

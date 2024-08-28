@@ -10,12 +10,18 @@ class StudentTest {
 
     @BeforeEach
     void init() {
-        s1 = new Student("6xxxxxx", "kong");
+        s1 = new Student("6xxxxxx", "kong", 50);
+    }
+
+    @Test
+    void testChangeName() {
+        s1.changeName("Not");
+        assertEquals("Not", s1.getName());
     }
 
     @Test
     void testAddScore() {
-        Student s1 = new Student("61xxxxxx", "kong");
+        Student s1 = new Student("6xxxxxx", "kong");
         s1.addScore(10.5);
         assertEquals(10.5, s1.getScore());
         s1.addScore(50);
@@ -24,8 +30,12 @@ class StudentTest {
 
     @Test
     void testCalculateGrade() {
-        Student s1 = new Student("6xxxxxx", "kong", 50);
         s1.addScore(20);
         assertEquals("B", s1.grade());
+    }
+
+    @Test
+    void testIsId() {
+        assertTrue(s1.isId("6xxxxxx"));
     }
 }
